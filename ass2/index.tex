@@ -4,6 +4,7 @@
 \usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
 \usepackage[english]{babel} % English language/hyphenation
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{hyperref}
 
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
 
@@ -36,7 +37,8 @@
 \normalfont \normalsize 
 \textsc{University of Copenhagen} \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge Security Analysis \\ % The assignment title
+\huge Current events summary\\ % The assignment title
+\Large Breakin at Logica Sweden\\ % Assignment subtitle
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
@@ -52,6 +54,27 @@
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
 
-\section{Security analysis}
+\section{Summary}
+The incident described in this summary concerns the recent discovery of a
+2-year breakin at Logica, a swedish outsourcing partner. The original article
+can be found on
+verions2\footnote{
+\href{http://www.version2.dk/artikel/hemmelig-rapport-saadan-blev-den-svenske-centraladministration-hacket-51798}
+     {http://www.version2.dk/artikel/hemmelig-rapport-saadan-blev-den-svenske-centraladministration-hacket-51798}}.
+
+In conjunction with the arrest and investigation of Gottfrid Svartholm
+Warg(GSW), one of the key persons in the "The Pirate Bay"-case, it has surfaced
+that he and others have had access to the Logica infrastructure, and some of
+their high-profile customers. The breakin started in January 2010 and was
+detected beginning of March 2012. 
+
+The attackers succesfully managed to download a confidential database
+containing information about all swedish residents, including persons with
+hidden indentities. Furthermore they stole tax-information and lists of all
+vehichels belonging to the swedish police, along with source-code from IBM and
+Logica.
+
+\section{Implications}
+
 
 \end{document}
