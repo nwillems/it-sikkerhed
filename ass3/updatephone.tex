@@ -1,0 +1,47 @@
+\section{Updatephone.c}
+I have found a couple of issues which I will list and then discuss.
+
+\begin{itemize}
+\item Not checking argc
+\item Overflow with user input(use of gets)
+\item SQL Sanitising
+\item Input sanitising
+\end{itemize}
+
+\subsection{Checking argc}
+If no argument is specified for the program, it should provide an error message
+instead of continuing with invalid inputs.
+
+\paragraph{Suggested solution} check if any user input was given.
+
+\subsection{Overflow (use of gets)}
+The use of \texttt{gets} has been discouraged for quite a while. The reason
+being simple buffer overflow. If you would input a phone number longer, than
+the buffer provided, it will overflow and the program could behave
+unintentionally.
+
+\paragraph{Suggested solution} use \texttt{fgets} instead, this function will
+check the buffer size and thereby not overflow it.
+
+\subsection{SQL Sanitising}
+None of the database code is included, but with the style of programming so
+far, it seems like a possible bug. If Bobby from IT changes his phone number to
+``123456'); DROP TABLE people; --'' he could possibly delete the entire
+database of phone numbers.
+
+\paragraph{Suggested solution} sanitise the input. This could be done simply by
+checking that all entered characters are numbers.
+
+\subsection{Input sanitising}
+This relates to the string given directly to \texttt{snprintf}, if malicious
+Bob where to enter his phone number as ``\%d'' he could possibly lift
+information out of the system. This is due to snprintf, when given a format
+string, expects more parameters and reads those, in this case from an
+unintended space.
+
+\paragraph{Suggested solution} when using formatted output, you could provide a
+format string, thereby making the call look like: 
+
+\begin{center}
+\texttt{snprintf(phone, sizeof(phone), "\%s", user\_input);}
+\end{center}

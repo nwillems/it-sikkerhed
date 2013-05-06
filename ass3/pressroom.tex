@@ -1,0 +1,60 @@
+\section{Pressroom.php}
+I have found a couple of issues which I will list and then discuss.
+
+\begin{itemize}
+\item Use of \$\_REQUEST
+\item Unsanitised input
+\item Reading of unintended files
+\item Reading of giant files
+\end{itemize}
+
+Some of the above mentioned are quite closely related. They are treated 
+individually to keep the different flaws separated.
+
+\subsection{Use of \$\_REQUEST}
+The use of \texttt{REQUEST} has been discouraged for a while, if not for 
+security at least for clarity in code.
+
+The problem here is the way PHP reads values into the \texttt{REQUEST}
+variable. It depends on the way PHP is setup with regards to the
+\textit{variables\_order}
+\footnote{\href{http://www.php.net/manual/en/ini.core.php\#ini.variables-order}
+  {http://www.php.net/manual/en/ini.core.php\#ini.variables-order}}
+directive.
+
+An attacker could populate a cookie with an unwanted value and have that
+inserted each time, since it would be overwritten.
+
+\paragraph{Suggested solution} change to use \texttt{\$\_GET} instead of
+\texttt{\$\_REQUEST}
+
+\subsection{Unsanitised input}
+The input is never sanitised, it leads to the two below errors, but also has
+some unintended ``side-effects''. It opens up for input of unintended strings,
+possibly an HTML string.
+
+Since the script uses \texttt{\$\_REQUEST} one could POST data to the script,
+allowing them to send much larger fragments than via GET.
+
+\paragraph{Suggested solution} either split the input into three different
+parameters, or check that it conforms to a standard format, something like:
+Regexp: \texttt{[0-9]\{2\}-[0-9]\{2\}-[0-9]\{2\}}
+
+\subsection{Reading of unintended files}
+This relates closely to the unsanitised inputs. The script allows you to put in
+a path to a file, and nicely reports back whether the file was found or not.
+This allows a possible attacker to read the contents of e.g. index.php or
+index.html, a simple read on the source code could reveal database password
+etc.
+
+\paragraph{Suggested solution} sanitise inputs with regards to file paths, such
+that only allowed files are read, by putting the files in a separate directory
+one could check this.
+
+\subsection{Reading of giant files}
+This vulnerability also relates to the two above. If an attacker would gain
+knowledge of big files accessible by the script, he could ask the script to
+read those, and thereby taking up system resources. This could render the
+server unresponsive, due to the amount of data that needs to be sent.
+
+\paragraph{Suggested solution} sanitise inputs as describe above.
