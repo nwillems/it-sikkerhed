@@ -74,7 +74,95 @@ hidden indentities. Furthermore they stole tax-information and lists of all
 vehichels belonging to the swedish police, along with source-code from IBM and
 Logica.
 
-\section{Implications}
+A main entrypoint to the mainframes, was the password database stored in the
+system RACF, this database stores usernames and passwords, it is said that it
+was downloaded and run through password-cracking tools. This is beleived to
+have been succefull, since multiple accounts has logged in during the attack.
 
+\section{The why}
+The reasons for breaking in has not been disclosed yet, but a guess is
+for profit. The information stolen has high value, and can easily be sold to
+interested parties. It is however a bit blurry, wether the intention for the
+involved people has been to make money off of the information.
+
+A better guess is interest, the people involved seem to have a profile that
+fits this reason, along with the interest in knowing what this data contains. A
+show-off mentality could also fit, even though not making a public anouncement
+beforehand weighs against this.
+
+A third idea about why this has happened, has been to feed data to an
+organisation like Wikileaks. The reason for no discovery/leak yet, is that the
+attackers hasn't had time to look through the data and find valuable pieces
+yet.
+
+\paragraph{The consequences} experienced in this case, still hasn't been 
+discovered. Aside from the data floating around on a privately held PC, no 
+physical attacks or leaks has been detected. In conclusion, no immediate
+consequences has been seen - but we should follow this closely, the intention
+behind this can greatly help in protecting against such attacks.
+
+\section{Implications}
+The issues arising from this, spreads from simple loss of confidentiality up to
+societal issues. All issues stems from the customer-profile Logica has been
+serving, and the data that they store.
+
+\subsection{What if this happens at BIOmedix}
+If we at BIOmedix, would have a similar security incident, it could mean loss
+of data and thereby money, since we are relying on our knowledge as a good. As
+a worst-case scenario, we could have current research leaked to the public or
+deleted and thereby lost, setting the process substantially back.
+
+The above are just simple descriptions of the implications. In the long run, if
+we had a 2 year undetected attack, it could mean that competitors or even
+customers would know our products before we release them, thereby cutting our
+profits.
+
+Depending on the nature of the attack, and the intentions behind it. An
+attacker could also leak confidential reports about early stages of a product,
+giving the public a wrong image of the medicine released. This would at first
+destroy our image, but more importantly could be a barrier for patients in need
+of the medicine.
+
+\section{Before the attack}
+To prevent such attacks, Logica could have been using a stronger password
+policy. The following factors are described in the version2 article:
+
+\begin{itemize}
+\item Dictionaries
+\item defaults
+\item weakness
+\end{itemize}
+
+Dictionaries are used to check passwords consisting of single or multiple words
+listed in a dictionary, this could be simple words like ``correct'',
+``battery'', ``horse'' and ``staple''. 
+
+Defaults in this context means passwords that are not changed from what they
+originally were. As an example a system comes with the password ``password'', 
+this is not changed, therefore leaving the system vulnerable to simple
+guessing.
+
+Weakness in passwords, always has its difficulties. We all know the standard
+phrases, 8 characters, at least 2 numbers and non-alphabetics, jada jada. This
+makes passwords hard to remember. In the current case, the password database
+did not distinguish between large and small letters, and did not allow
+non-alphabetic characters.
+
+\section{What we should do}
+At BIOmedix, I think we should take this incident lightly. Thereby not saying
+we should not care, but that we are not in a high-risk group for such attacks.
+
+To close possible holes, I beleive we should dissallow access our mainframes or
+the like machines from the internet. Also we should not allow them to
+communicate with the internet. This can be done by whitelisting what internal
+IP's are allowed to communicate with them.
+
+Our database systems should also be closed down, and only allow access from
+inside our network. If we need to have traveling researchers, this could be
+opened by a VPN connection.
+
+This could be counter productive, and probably also lead us to more insecure
+systems. Having researchers send their research on an open wire to colleagues
+for them to put in the databases.
 
 \end{document}
