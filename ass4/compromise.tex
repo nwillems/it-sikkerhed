@@ -1,0 +1,105 @@
+\section{Root compromise}
+This section is divided into two subsections, one describing the current
+incident and the second describing actions to be taken, to prevent similar
+incidents in the future.
+
+\subsection{The current breach}
+While looking at the \texttt{auth.log}, I discovered multiple entries for
+failed root login attempts, in total about 192 failed password attempts,
+within 4 minutes.
+
+\begin{verbatim}
+Mar 22 05:07:39 biomclus1 sshd[12977]: Failed password for root from \
+    109.196.143.60 port 52817 ssh2
+Mar 22 05:07:39 biomclus1 sshd[12978]: Failed password for root from \
+    109.196.143.60 port 52818 ssh2
+\end{verbatim}
+
+It seems the attacker used a `simple' brute-force attack. 
+
+As to how the attacker discovered the cluster, I have no idea. A good guess
+would be that he scanned for open ports in our range.
+
+\subsection{Preventing future incidents}
+In the following several measures to prevent similar attacks are listed, and
+then further on described in detail.
+
+\begin{itemize}
+\item Stronger passwords
+\item Disable root login via SSH
+\item Lockout after N failed login attempts
+\item Setup DenyHosts
+\item Allow only PK login
+\item Change SSH port
+\item Move cluster to different network
+\end{itemize}
+
+A very comprehensive list of security `fixes' for OpenSSH can be found at:
+\href{http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html}
+     {http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html}.
+The article has inspired some of the above suggested measures.
+
+\subsubsection{Stronger passwords}
+The password was guessed within 192 attempts, this could have been prevented by
+having a stronger password. If the attacker used a dictionary, this could
+suggest that the root password contained words within a dictionary.
+
+To generate stronger passwords, one could use a password generator.
+
+\subsubsection{Disable root login via SSH}
+Disallowing the root user to login, would prevent an attacker from logging in
+as root. To allow root access to users, {\tt su} or {\tt sudo}, should be used,
+this approach has the positive side-effect that actions performed with elevated
+privileges can be traced.
+
+This is easily done by setting the \texttt{PermitRootLogin} variable in the 
+configuration.
+
+\subsubsection{Change SSH port}
+Changing the port that SSHD listens on, will prevent standard script from doing
+brute-force attacks. It could also help in preventing the system from being
+discovered with simple port scanning.
+
+To change the port, in the configuration one should change the \texttt{Port}
+variable to something different from 22.
+
+\subsubsection{Lockout after $N$ failed login attempts}
+To delay an attacker when brute-forcing, a mechanism to temporarily lock an 
+account after $N$ failed login attempts should be implemented. The mechanism
+could work as follows, after 5 failed attempts the account is locked for 2
+minutes, then after 15 failed attempts the account should be completely locked.
+
+The module \texttt{pam\_tally} should be installed and configured.
+
+\subsubsection{Setup DenyHosts}
+To prevent brute-forcing passwords, one can deny a host trying to login, after
+they have failed a specific number of times. Multiple solutions to implement
+this exists, ``Fail2ban'' and ``DenyHosts'' are two such.
+
+The most widely used is ``DenyHosts'', which is a python based script to do 
+the above described. Setting this up, is described in this article:
+\href{http://www.cyberciti.biz/faq/rhel-linux-block-ssh-dictionary-brute-force-attacks/}
+     {http://www.cyberciti.biz/faq/rhel-linux-block-ssh-dictionary-brute-force-attacks/}.
+
+\subsubsection{Allow only PK login}
+Preventing users from logging in with their password, and only allowing them to
+use their Private Key. This prevents an attacker from doing brute-force attacks
+using passwords.
+
+This is easily configured through the configuration file, with the
+\texttt{PasswordAuthentication} variable.
+
+\subsubsection{Move cluster to different network}
+Completely removing the cluster from an internet facing network segment, will
+prevent attackers from accessing it - thereby not making brute-force attacks
+possible from the outside world. This is in the category of ``extreme''
+measures, and I think this would be more of a hassle than actually improving
+security.
+
+If this should be implemented, I would suggest placing the cluster behind the 
+main firewall, together with the internal servers. To allow outside access one 
+could setup a VPN-server, on a separate segment with access only to the cluster,
+and then add internal servers as needed.
+
+
+
