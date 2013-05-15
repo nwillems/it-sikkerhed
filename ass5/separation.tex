@@ -1,0 +1,34 @@
+\section{Separation of networks}
+I see multiple reasons to separate the networks, firstly separation of
+concerns, secondly the separation of segments provides us with the security
+imposed by a possibly restrictive firewall designed in the following section.
+
+\subsection{Separation of Concerns}
+The concerns involved with network administration, are in a small company
+negligible. But in the context of BIOmedix, we see a full /24 network
+reserved for workstations(approximately 256 IPs), sharing these addresses with
+the servers minimises the number of connected devices within the workstation
+net.
+
+It also frees up resources form the DHCP server within the workstation net.
+Addressing at the segment of the internal servers can probably be done in a
+static manner, thereby minimising the risk of misconfiguration upon reboots of
+servers.
+
+\subsection{Security by ``New Firewall''}
+The new firewall imposes some rather strict rules for the devices within the
+workstation net, this can open up for a BYOD policy at BIOmedix, but also make
+the workstations a very ``unattractive'' place to sit.
+
+It can though limit the damages possible from within the network, f.x. from
+an infected workstation or a laptop brought back and forth between work and
+home. It also makes breaking in to the workstations a bit harder, the
+workstation computers are probably containing current research or even worse
+plans for new research projects.
+
+The internal servers segment can also be closed down completely, by setting up
+rules in the ``Main Firewall', that disallows any traffic to or from the server
+segment, but allows traffic flowing from the workstation segment to both
+internet and internal servers. This rule could also be implemented within the
+design handed out in \textbf{Exercise4}, but the actual separation of networks,
+makes it easier to ``pull the plug'' from either of the networks.
