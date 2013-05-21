@@ -37,7 +37,7 @@
 \normalfont \normalsize 
 \textsc{University of Copenhagen} \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge Security Analysis \\ % The assignment title
+\huge Cloud risk analysis\\ % The assignment title
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
@@ -53,6 +53,113 @@
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
 
-\section{Security analysis}
+This assignment focuses on the risks involved with chosing a cloud provider, in
+this particular case Microsoft Office365.
+
+I have divided it into four sections, description of the data stored,
+use-cases involved and the personel needing access, secondly I try to 
+approximate the level of security needed for each of the data pieces and 
+personel, the third section matches the needed requirements with the Office365
+provided measures of security. Lastly I provide a recommendation on wether
+Office365 is suitable or not, for BIOmedix.
+
+\section{Identification of personel and data}
+I have identified three types of information in the organisation:
+
+\begin{description}
+\item[Business papers] Describes the processes and flows, together with
+    policies in place.
+\item[Sales presentations] Slide-shows used by sales reps when presenting for
+    possible customers.
+\item[Research data] The data produced or gathered by researchers at BIOmedix
+\item[Employe records] compasses the data gathered by the HR department. It
+    contains, addresses, phone numbers, career plans and performance metrics.
+\end{description}
+
+These types of data needs different levels of security, which I will put in
+context with the personel using them. First lets identify the personel,
+involved with handling this data, and their travel habbits.
+
+\begin{description}
+\item[Common employees] Only works with business processes and management. Works
+    from the office and from home.
+\item[HR employees] Works with employee records. Works form office and home.
+\item[Researchers] Also works at conferences and international research boards.
+\item[CEO \& Sales team] Frequently travels and need data on the go
+\end{description}
+
+The different teams need access to different information types, in the below
+table I will link them together.
+
+\begin{tabular}{r | c | c | c | c}
+ & Business papers & Sales slides & research & employee record \\ \hline
+Common employees & x &   &   &   \\ \hline
+HR employess     & x &   &   & x \\ \hline
+Researchers      &   &   & x &   \\ \hline
+Sales reps       & x & x &   &   \\ \hline
+CEO \& Board     & x & x & x & x \\
+\end{tabular}
+
+\section{Security levels}
+I have boiled down the above table to four different security levels, with each
+of their respective demands and needs for confidentiality. Furthermore I have
+tried to quantify the risks involved with loosing such data(All scales from 1
+being not dangerous/harmfull to 5 being very dangerous/harmfull/costly).
+
+The risk ``matrix'' referenced, is the one presented in the slides from the
+lecture held about security management.
+
+\subsection{Personal employee records}
+These records are containing possibly damaging information or at least what
+danish law describes as being personal, they require a ``special'' level of
+trust.
+
+They are however not vital to the company, but could potentially damage the
+image of the company if lost or made public.
+
+The risk of this data being stolen, would be a 2. They are of no particular
+interest to other companies in the same area of business, but to a non-business
+hacker they could be interesting.
+
+The loss of this data could damage up to a 3, reputation and image can be lost.
+If it contains more than the ordinary, it could deem very damaging to the
+company image.
+
+In the risk ``matrix'' this would end up as something in the yellow zone.
+
+\subsection{Research data}
+Research data is critical to the contiued growth of business, loss of this data
+could render a new product unsellable, since the data would either be made
+public, or sold to competitors.
+
+These data are vital to the company, it is what they sell and base their
+operation on.
+
+The risk of this data being stolen is a 5, it is higly likely that competitors
+or interested parties would want to get their hands on this kind of data.
+
+The loss of this data could damage up to a 5, the business can suffer
+substantial setbacks in product development, or even expose them to a degree of
+not being sellable.
+
+In the risk ``matrix'' this would end up as something in the higly red zone.
+
+\subsection{Sales and business}
+Business policies and flow descriptions are not crucial to the company, and
+are easily recoverable. It can have some political interest for people to
+know how a medico works on the inside, but most of this is probably flehsing
+out of relevant law material.
+
+Sales presentations however, can contain compromising information with regards
+to customer relations, but assuming that BIOmedix operates an open and ``fair''
+company, this is not relevant.
+
+\subsection{All access}
+
+% BLA BLA
+\section{Office365 in context}
+
+
+\section{Recommendations}
 
 \end{document}
