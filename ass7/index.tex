@@ -53,17 +53,17 @@
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
 
-This assignment focuses on the risks involved with chosing a cloud provider, in
+This assignment focuses on the risks involved with choosing a cloud provider, in
 this particular case Microsoft Office365.
 
 I have divided it into four sections, description of the data stored,
-use-cases involved and the personel needing access, secondly I try to 
+use-cases involved and the personnel needing access, secondly I try to 
 approximate the level of security needed for each of the data pieces and 
-personel, the third section matches the needed requirements with the Office365
-provided measures of security. Lastly I provide a recommendation on wether
+personnel, the third section matches the needed requirements with the Office365
+provided measures of security. Lastly I provide a recommendation on whether
 Office365 is suitable or not, for BIOmedix.
 
-\section{Identification of personel and data}
+\section{Identification of personnel and data}
 I have identified three types of information in the organisation:
 
 \begin{description}
@@ -72,13 +72,13 @@ I have identified three types of information in the organisation:
 \item[Sales presentations] Slide-shows used by sales reps when presenting for
     possible customers.
 \item[Research data] The data produced or gathered by researchers at BIOmedix
-\item[Employe records] compasses the data gathered by the HR department. It
+\item[Employee records] compasses the data gathered by the HR department. It
     contains, addresses, phone numbers, career plans and performance metrics.
 \end{description}
 
 These types of data needs different levels of security, which I will put in
-context with the personel using them. First lets identify the personel,
-involved with handling this data, and their travel habbits.
+context with the personnel using them. First lets identify the personnel,
+involved with handling this data, and their travel habits.
 
 \begin{description}
 \item[Common employees] Only works with business processes and management. Works
@@ -94,7 +94,7 @@ table I will link them together.
 \begin{tabular}{r | c | c | c | c}
  & Business papers & Sales slides & research & employee record \\ \hline
 Common employees & x &   &   &   \\ \hline
-HR employess     & x &   &   & x \\ \hline
+HR employees     & x &   &   & x \\ \hline
 Researchers      &   &   & x &   \\ \hline
 Sales reps       & x & x &   &   \\ \hline
 CEO \& Board     & x & x & x & x \\
@@ -104,7 +104,7 @@ CEO \& Board     & x & x & x & x \\
 I have boiled down the above table to four different security levels, with each
 of their respective demands and needs for confidentiality. Furthermore I have
 tried to quantify the risks involved with loosing such data(All scales from 1
-being not dangerous/harmfull to 5 being very dangerous/harmfull/costly).
+being not dangerous/harmful to 5 being very dangerous/harmfully/costly).
 
 The risk ``matrix'' referenced, is the one presented in the slides from the
 lecture held about security management.
@@ -128,38 +128,146 @@ company image.
 In the risk ``matrix'' this would end up as something in the yellow zone.
 
 \subsection{Research data}
-Research data is critical to the contiued growth of business, loss of this data
-could render a new product unsellable, since the data would either be made
+Research data is critical to the continued growth of business, loss of this data
+could render a new product unsaleable, since the data would either be made
 public, or sold to competitors.
 
 These data are vital to the company, it is what they sell and base their
 operation on.
 
-The risk of this data being stolen is a 5, it is higly likely that competitors
+The risk of this data being stolen is a 5, it is highly likely that competitors
 or interested parties would want to get their hands on this kind of data.
 
 The loss of this data could damage up to a 5, the business can suffer
 substantial setbacks in product development, or even expose them to a degree of
-not being sellable.
+not being saleable.
 
-In the risk ``matrix'' this would end up as something in the higly red zone.
+In the risk ``matrix'' this would end up as something in the highly red zone.
 
 \subsection{Sales and business}
 Business policies and flow descriptions are not crucial to the company, and
 are easily recoverable. It can have some political interest for people to
-know how a medico works on the inside, but most of this is probably flehsing
+know how a medico works on the inside, but most of this is probably fleshing
 out of relevant law material.
 
 Sales presentations however, can contain compromising information with regards
 to customer relations, but assuming that BIOmedix operates an open and ``fair''
 company, this is not relevant.
 
+The risk of this data being stolen is a 3, it is business description digging
+deeper than what is required of the company to publish. Therefore pokey
+attackers would interested in making this public.
+
+Loss of this data, scores in at a 2. If completely lost then yes, this can be
+quite costly to recover, but a compromise is not crucial for the operations of
+business.
+
+In the risk ``matrix'' this would end up as something in the orange zone.
+
 \subsection{All access}
+This is more of an access level than an actual security level. It is included
+to have a box to put in people needing complete access to all of the businesses
+data, such as CEO, boards members and the like.
 
-% BLA BLA
+Needless to say, this is a double 5, hitting in the dark dark red zone of the
+risk ``matrix''.
+
 \section{Office365 in context}
+In this section, I will explore the security mechanisms Office365 implements. I
+will also try to put them in the context of the previously identified security 
+levels.
 
+
+In general Microsoft has very high standards with regards to the data they
+store. Which also leads to a high degree of satisfaction for each of the above
+described security levels.
+
+Microsoft has released several resources describing the security measures
+implemented in their cloud solutions, the following resources has been very
+useful:
+
+\begin{itemize}
+\item Microsoft Office365 Trust Centre
+\href{http://office.microsoft.com/en-us/business/office-365-trust-center-cloud-computing-security-FX103030390.aspx}
+     {http://office.microsoft.com/en-us/business/office-365-trust-center-cloud-computing-security-FX103030390.aspx}
+\item CSA Registration on Office365
+\href{https://cloudsecurityalliance.org/star-registrant/microsoft-office-365/}
+     {https://cloudsecurityalliance.org/star-registrant/microsoft-office-365/}
+\item QA on Regulatory compliance \href{http://www.microsoft.com/online/legal/v2/?docid=31}
+    {http://www.microsoft.com/online/legal/v2/?docid=31}
+\item Security controls
+\href{http://office.microsoft.com/en-us/business/microsoft-business-security-solutions-FX103045813.aspx}
+     {http://office.microsoft.com/en-us/business/microsoft-business-security-solutions-FX103045813.aspx}
+\end{itemize}
+
+All the below sub-sections are relevant highlight, alas it is not a
+comprehensive list, for a more thorough list, see \textit{Security controls},
+for a more in-depth run through of the security surrounding Microsoft' cloud
+services checkout the \textit{CSA Registration on Office365}.
+
+\subsection{Data isolation}
+Microsoft promises to isolate tenant data from other tenants. Meaning that each
+company signed up, will have their data kept isolated. It also means that if
+another company is compromised, no access to BIOmedix data is given.
+
+This is crucial for BIOmedix' operation, since it has a high requirement on
+isolation for the research data. 
+
+\subsection{Role based access}
+User access can be managed through one of several alternative, regular Active
+Directory, Azure AD and AD Federation Services. This allows BIOmedix to keep
+their current AD with the already implemented Group Policies and current users.
+
+This will minimise the administrative overhead, and the margin for error when
+creating new users. It also ensures that if a employee' account is compromised,
+no more than what they are allowed is given away to an attacker.
+
+\subsection{Encryption}
+Office365 has the possibility to enable Bit-Locker 256-bit encryption for
+emails, and using Rights Management Service allows both administrators and
+users to selectively encrypt sensitive documents and data.
+
+This further ensures that the BIOmedix information is kept secret from
+intruding parties. But in the end, it only allows for a certain security, the
+``screen dump'' is still sent only encrypted with SSL over HTTP to the client.
+
+\subsection{Device security}
+The Office365 solution also provides the added security to wipe a unit(be it a
+PC or smart-phone), if lost or stolen. This feature also provides devices access
+restrictions.
+
+This is a vital to BIOmedix' operation of the service, since a large part of
+business happens outside the offices, when researchers visits conferences or
+sales reps visits customer.
+
+\paragraph{The solution} generally provides high degree of security, and seems
+very satisfying to the requirements of BIOmedix. But it is still a Microsoft
+provided service, making it subject to all applicable American law, this I see
+as a major drawback, for the security of BIOmedix' data.
+
+The involved American applicable law, is mainly the Patriot Act, deeming that a
+company based in USA, should deliver data(even that stored in the EU) to the
+government if reasonable suspicion about terror is made against the
+company, this being done without the company in question knowing about it. I
+don't feel that this is reasonable for the data that BIOmedix stores, the risk
+of them being investigated due to their area of business is quite high.
 
 \section{Recommendations}
+In the end, when evaluating all factors, I can only give recommendations as to 
+how Office365 can be used in the BIOmedix organisation.
+
+My recommendation is that for everyone needing to present outside the office,
+licenses are bought for Office365. My valuation on the American laws
+applicable, does make the Microsoft cloud unusable for the research data, that
+BIOmedix treats.
+
+A partial migration could also be done, by having all business documents and 
+presentations stored in the cloud, thereby leaving HR records and resource data
+to BIOmedix' own security procedures and law applicable in their country of
+operation.
+
+I see no scenario where HR records or research data is allowed into the cloud.
+Other measures for making this available from home, can be taken. For example a
+terminal services solution could be deployed at BIOmedix.
 
 \end{document}
